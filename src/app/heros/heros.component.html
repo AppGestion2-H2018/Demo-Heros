@@ -1,6 +1,6 @@
 Nouveau héro :
 <mat-form-field >
-  <input [(ngModel)]="newHero.nom" matInput >
+  <input [(ngModel)]="newHero.nom" matInput (keyup.enter)="onAdd(tableHeros)" >
 </mat-form-field>
 <button mat-button (click)="onAdd(tableHeros)"><i class="material-icons">add</i></button>
 
@@ -16,7 +16,7 @@ Nouveau héro :
       <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
       <mat-cell *matCellDef="let hero">
         <mat-form-field *ngIf="(selectedHero && selectedHero === hero);else editNom;">
-          <input [(ngModel)]="selectedHero.nom" matInput >
+          <input [(ngModel)]="selectedHero.nom" matInput (keyup.enter)="onEdit(hero)" >
         </mat-form-field>
         <ng-template #editNom>{{hero.nom}}</ng-template>
       </mat-cell>
