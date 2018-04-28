@@ -23,7 +23,7 @@ Nouveau héro :
     </ng-container>
 
     <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
       <mat-cell *matCellDef="let hero">
         <button *ngIf="(selectedHero && selectedHero === hero);else editButton;" color="warn"  mat-button (click)="onEdit(hero)"><i class="material-icons">done</i></button>
         <ng-template #editButton><button mat-button (click)="onSelected(hero)"><i class="material-icons">edit</i></button></ng-template>
