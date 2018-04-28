@@ -80,14 +80,12 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_component__ = __webpack_require__("./src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__heros_heros_component__ = __webpack_require__("./src/app/heros/heros.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__hero_service__ = __webpack_require__("./src/app/hero.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__hero_detail_hero_detail_component__ = __webpack_require__("./src/app/hero-detail/hero-detail.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -108,8 +106,7 @@ var AppModule = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["H" /* NgModule */])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_10__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__heros_heros_component__["a" /* HerosComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__hero_detail_hero_detail_component__["a" /* HeroDetailComponent */]
+                __WEBPACK_IMPORTED_MODULE_11__heros_heros_component__["a" /* HerosComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormsModule */], __WEBPACK_IMPORTED_MODULE_9__angular_common_http__["b" /* HttpClientModule */], __WEBPACK_IMPORTED_MODULE_6__angular_material_icon__["a" /* MatIconModule */], __WEBPACK_IMPORTED_MODULE_7__angular_material_button__["a" /* MatButtonModule */], __WEBPACK_IMPORTED_MODULE_8__angular_material_table__["a" /* MatTableModule */], __WEBPACK_IMPORTED_MODULE_4__angular_material_form_field__["b" /* MatFormFieldModule */], __WEBPACK_IMPORTED_MODULE_3__angular_material_input__["a" /* MatInputModule */], __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */]
@@ -119,62 +116,6 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/hero-detail/hero-detail.component.css":
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/hero-detail/hero-detail.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "\n<div *ngIf=\"selectedHero\">\n\n  <h2>Informations sur {{selectedHero.nom}}</h2>\n  <div>\n    <label>id : </label>{{selectedHero._id}}\n  </div>\n  <div>\n    <label>nom : </label>\n    <input [(ngModel)]=\"selectedHero.nom\" placeholder=\"nom\">\n  </div>\n\n</div>"
-
-/***/ }),
-
-/***/ "./src/app/hero-detail/hero-detail.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeroDetailComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__hero__ = __webpack_require__("./src/app/hero.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var HeroDetailComponent = /** @class */ (function () {
-    function HeroDetailComponent() {
-    }
-    HeroDetailComponent.prototype.ngOnInit = function () {
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Input */])(),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__hero__["a" /* Hero */])
-    ], HeroDetailComponent.prototype, "selectedHero", void 0);
-    HeroDetailComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'app-hero-detail',
-            template: __webpack_require__("./src/app/hero-detail/hero-detail.component.html"),
-            styles: [__webpack_require__("./src/app/hero-detail/hero-detail.component.css")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], HeroDetailComponent);
-    return HeroDetailComponent;
 }());
 
 
@@ -262,7 +203,7 @@ module.exports = "/* HerosComponent's private CSS styles */\r\n.selected {\r\n  
 /***/ "./src/app/heros/heros.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "Nouveau héro :\n<mat-form-field >\n  <input [(ngModel)]=\"newHero.nom\" matInput >\n</mat-form-field>\n<button mat-button (click)=\"onAdd(hero)\"><i class=\"material-icons\">add</i></button>\n\n<div class=\"example-container mat-elevation-z8\">\n   <mat-table #table [dataSource]=\"heros\">\n\n    <ng-container matColumnDef=\"id\">\n      <mat-header-cell *matHeaderCellDef> # </mat-header-cell>\n      <mat-cell *matCellDef=\"let hero\"> {{hero._id}} </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"nom\">\n      <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>\n      <mat-cell *matCellDef=\"let hero\">\n        <mat-form-field *ngIf=\"(selectedHero && selectedHero === hero);else editNom;\">\n          <input [(ngModel)]=\"selectedHero.nom\" matInput >\n        </mat-form-field>\n        <ng-template #editNom>{{hero.nom}}</ng-template>\n      </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"actions\">\n      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>\n      <mat-cell *matCellDef=\"let hero\">\n        <button *ngIf=\"(selectedHero && selectedHero === hero);else editButton;\" color=\"warn\"  mat-button (click)=\"onEdit(hero)\"><i class=\"material-icons\">done</i></button>\n        <ng-template #editButton><button mat-button (click)=\"onSelected(hero)\"><i class=\"material-icons\">edit</i></button></ng-template>\n        <button mat-button (click)=\"onDelete(hero)\"><i class=\"material-icons\">delete</i></button>\n      </mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n\n</mat-table>\n</div>\n\n\n"
+module.exports = "Nouveau héro :\n<mat-form-field >\n  <input [(ngModel)]=\"newHero.nom\" matInput >\n</mat-form-field>\n<button mat-button (click)=\"onAdd(tableHeros)\"><i class=\"material-icons\">add</i></button>\n\n<div class=\"example-container mat-elevation-z8\">\n   <mat-table #tableHeros [dataSource]=\"heros\">\n\n    <ng-container matColumnDef=\"id\">\n      <mat-header-cell *matHeaderCellDef> # </mat-header-cell>\n      <mat-cell *matCellDef=\"let hero\"> {{hero._id}} </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"nom\">\n      <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>\n      <mat-cell *matCellDef=\"let hero\">\n        <mat-form-field *ngIf=\"(selectedHero && selectedHero === hero);else editNom;\">\n          <input [(ngModel)]=\"selectedHero.nom\" matInput >\n        </mat-form-field>\n        <ng-template #editNom>{{hero.nom}}</ng-template>\n      </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"actions\">\n      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>\n      <mat-cell *matCellDef=\"let hero\">\n        <button *ngIf=\"(selectedHero && selectedHero === hero);else editButton;\" color=\"warn\"  mat-button (click)=\"onEdit(hero)\"><i class=\"material-icons\">done</i></button>\n        <ng-template #editButton><button mat-button (click)=\"onSelected(hero)\"><i class=\"material-icons\">edit</i></button></ng-template>\n        <button mat-button (click)=\"onDelete(hero)\"><i class=\"material-icons\">delete</i></button>\n      </mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n\n</mat-table>\n</div>\n\n\n"
 
 /***/ }),
 
@@ -296,14 +237,13 @@ var HerosComponent = /** @class */ (function () {
         this.heroService.getHeros()
             .subscribe(function (heros) { return _this.heros = heros; });
     };
-    HerosComponent.prototype.onAdd = function () {
+    HerosComponent.prototype.onAdd = function (tableHeros) {
         var _this = this;
         this.heroService.addHero(this.newHero)
-            .subscribe(function (hero) { _this.heros.push(hero); _this.newHero.nom = ''; });
+            .subscribe(function (hero) { _this.heros.push(hero); _this.newHero.nom = ''; tableHeros.renderRows(); });
     };
     HerosComponent.prototype.onSelected = function (hero) {
         this.selectedHero = hero;
-        console.log(this.selectedHero);
     };
     HerosComponent.prototype.onEdit = function () {
         var _this = this;

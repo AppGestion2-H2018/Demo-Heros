@@ -13,14 +13,12 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HerosComponent } from './heros/heros.component';
 import { HeroService } from './hero.service';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        HerosComponent,
-        HeroDetailComponent
+        HerosComponent
     ],
     imports: [
         BrowserModule, FormsModule, HttpClientModule, MatIconModule, MatButtonModule, MatTableModule, MatFormFieldModule, MatInputModule, BrowserAnimationsModule

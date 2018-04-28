@@ -2,10 +2,10 @@ Nouveau héro :
 <mat-form-field >
   <input [(ngModel)]="newHero.nom" matInput >
 </mat-form-field>
-<button mat-button (click)="onAdd(hero)"><i class="material-icons">add</i></button>
+<button mat-button (click)="onAdd(tableHeros)"><i class="material-icons">add</i></button>
 
 <div class="example-container mat-elevation-z8">
-   <mat-table #table [dataSource]="heros">
+   <mat-table #tableHeros [dataSource]="heros">
 
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> # </mat-header-cell>

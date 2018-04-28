@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
+import {MatTable} from '@angular/material/table';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
@@ -24,20 +24,18 @@ export class HerosComponent implements OnInit {
   }
 
 
-  onAdd() {
+  onAdd(tableHeros: MatTable<Hero>) {
       this.heroService.addHero(this.newHero)
-          .subscribe(hero  => { this.heros.push(hero); this.newHero.nom = ''});
+          .subscribe(hero  => { this.heros.push(hero); this.newHero.nom = ''; tableHeros.renderRows();});
   }
 
   onSelected(hero: Hero): void {
         this.selectedHero = hero;
-        console.log(this.selectedHero);
   }
 
     onEdit(): void {
         this.heroService.updateHero(this.selectedHero)
             .subscribe(() => this.selectedHero = null);
-
     }
 
 
