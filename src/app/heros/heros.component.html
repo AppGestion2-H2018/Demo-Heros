@@ -1,8 +1,7 @@
-
-<form #newHeroForm="ngForm" id="newHeroForm" (ngSubmit)="onAdd(tableHeros, newHeroForm);">
+<form #heroFormAjout="ngForm" id="heroFormAjout" (ngSubmit)="onAdd(tableHeros, heroFormAjout);">
     <mat-form-field class="input-full-width">
         <input type="text" name="nom" required minlength="2" maxlength="50" [(ngModel)]="newHero.nom" matInput #nom="ngModel" placeholder="Nouveau héro">
-        <button matSuffix  type="submit" mat-icon-button color="primary" [disabled]="!newHeroForm.form.valid"><i class="material-icons">add</i></button>
+        <button matSuffix  type="submit" mat-icon-button color="primary" [disabled]="!heroFormAjout.form.valid"><i class="material-icons">add</i></button>
         <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('required')">Le nom est obligatoire.</mat-error>
         <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('minlength')">Le nom doit contenir au moins 2 caractères.</mat-error>
         <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('maxlength')">Le nom doit contenir au maximum 50 caractères.</mat-error>
@@ -21,19 +20,30 @@
     <ng-container matColumnDef="nom">
       <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
       <mat-cell *matCellDef="let hero">
-        <mat-form-field *ngIf="(selectedHero && selectedHero === hero);else editNom;">
-          <input [(ngModel)]="selectedHero.nom" matInput (keyup.enter)="onEdit(hero)" >
-        </mat-form-field>
-        <ng-template #editNom>{{hero.nom}}</ng-template>
+          <form #heroFormEdition="ngForm" id="heroFormEdition" (ngSubmit)="heroFormEdition.form.valid && onEdit(heroFormEdition)">
+            <mat-form-field *ngIf="(selectedHero && selectedHero === hero);else editNom;" class="input-full-width">
+                <input name="selectedHeroNom" [(ngModel)]="selectedHero.nom" matInput required minlength="2" maxlength="50" name="nomEdition" #nomEdition="ngModel">
+                <mat-error *ngIf="nomEdition.invalid && (nomEdition.dirty || nomEdition.touched) && nomEdition.hasError('required')">Le nom est obligatoire.</mat-error>
+                <mat-error *ngIf="nomEdition.invalid && (nomEdition.dirty || nomEdition.touched) && nomEdition.hasError('minlength')">Le nom doit contenir au moins 2 caractères.</mat-error>
+                <mat-error *ngIf="nomEdition.invalid && (nomEdition.dirty || nomEdition.touched) && nomEdition.hasError('maxlength')">Le nom doit contenir au maximum 50 caractères.</mat-error>
+            </mat-form-field>
+          </form>
+          <ng-template #editNom><span (click)="onSelected(hero)">{{hero.nom}}</span></ng-template>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-      <mat-cell *matCellDef="let hero">
-        <button *ngIf="(selectedHero && selectedHero === hero);else editButton;" color="warn"  mat-button (click)="onEdit(hero)"><i class="material-icons">done</i></button>
-        <ng-template #editButton><button mat-button (click)="onSelected(hero)"><i class="material-icons">edit</i></button></ng-template>
-        <button mat-button (click)="onDelete(hero)"><i class="material-icons">delete</i></button>
+      <mat-cell *matCellDef="let hero" class="boutonsAction">
+            <button *ngIf="(selectedHero && selectedHero === hero);else editButton;" color="primary" form="heroFormEdition" mat-button><i class="material-icons">done</i></button>
+        <ng-template #editButton>
+            <form (ngSubmit)="onSelected(hero)">
+                <button mat-button><i class="material-icons">edit</i></button>
+            </form>
+        </ng-template>
+          <form (ngSubmit)="onDelete(hero)">
+            <button mat-button ><i class="material-icons">delete</i></button>
+          </form>
       </mat-cell>
     </ng-container>
 

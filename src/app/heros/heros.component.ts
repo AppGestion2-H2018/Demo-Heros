@@ -26,13 +26,13 @@ export class HerosComponent implements OnInit {
   }
 
 
-  onAdd(tableHeros: MatTable<Hero>, newHeroForm:NgForm) {
+  onAdd(tableHeros: MatTable<Hero>, heroFormAjout: NgForm) {
     console.log("123");
-    console.log(newHeroForm);
+    console.log(heroFormAjout);
       console.log("456");
-    if(newHeroForm.valid) {
+    if(heroFormAjout.valid) {
       this.heroService.addHero(this.newHero)
-          .subscribe(hero  => { this.heros.push(hero); newHeroForm.resetForm(); tableHeros.renderRows();});
+          .subscribe(hero  => { this.heros.push(hero); heroFormAjout.resetForm(); tableHeros.renderRows();});
     }
   }
 
@@ -40,9 +40,11 @@ export class HerosComponent implements OnInit {
         this.selectedHero = hero;
   }
 
-    onEdit(): void {
-        this.heroService.updateHero(this.selectedHero)
-            .subscribe(() => this.selectedHero = null);
+    onEdit(heroFormEdition: NgForm): void {
+      if(heroFormEdition.valid) {
+          this.heroService.updateHero(this.selectedHero)
+              .subscribe(() => this.selectedHero = null);
+      }
     }
 
 
