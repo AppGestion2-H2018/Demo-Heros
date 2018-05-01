@@ -1,8 +1,14 @@
-Nouveau héro :
-<mat-form-field >
-  <input [(ngModel)]="newHero.nom" matInput (keyup.enter)="onAdd(tableHeros)" >
-</mat-form-field>
-<button mat-button (click)="onAdd(tableHeros)"><i class="material-icons">add</i></button>
+
+<form #newHeroForm="ngForm" id="newHeroForm" (ngSubmit)="onAdd(tableHeros, newHeroForm);">
+    <mat-form-field class="input-full-width">
+        <input type="text" name="nom" required minlength="2" maxlength="50" [(ngModel)]="newHero.nom" matInput #nom="ngModel" placeholder="Nouveau héro">
+        <button matSuffix  type="submit" mat-icon-button color="primary" [disabled]="!newHeroForm.form.valid"><i class="material-icons">add</i></button>
+        <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('required')">Le nom est obligatoire.</mat-error>
+        <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('minlength')">Le nom doit contenir au moins 2 caractères.</mat-error>
+        <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('maxlength')">Le nom doit contenir au maximum 50 caractères.</mat-error>
+    </mat-form-field>
+
+</form>
 
 <div class="example-container mat-elevation-z8">
    <mat-table #tableHeros [dataSource]="heros">

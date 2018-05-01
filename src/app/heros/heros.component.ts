@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTable} from '@angular/material/table';
+import { NgForm } from '@angular/forms';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
@@ -15,6 +16,7 @@ export class HerosComponent implements OnInit {
   selectedHero: Hero;
   newHero : Hero;
   displayedColumns = ['id', 'nom', 'actions'];
+  name:any;
 
   constructor(private heroService: HeroService) { }
 
@@ -24,9 +26,14 @@ export class HerosComponent implements OnInit {
   }
 
 
-  onAdd(tableHeros: MatTable<Hero>) {
+  onAdd(tableHeros: MatTable<Hero>, newHeroForm:NgForm) {
+    console.log("123");
+    console.log(newHeroForm);
+      console.log("456");
+    if(newHeroForm.valid) {
       this.heroService.addHero(this.newHero)
-          .subscribe(hero  => { this.heros.push(hero); this.newHero.nom = ''; tableHeros.renderRows();});
+          .subscribe(hero  => { this.heros.push(hero); newHeroForm.resetForm(); tableHeros.renderRows();});
+    }
   }
 
   onSelected(hero: Hero): void {
